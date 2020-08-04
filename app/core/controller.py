@@ -15,7 +15,7 @@ async def get_all_users(db: AsyncIOMotorClient = Depends(get_database)) -> Users
     return UsersInResponse(data=users)
 
 
-@router.post('/')
+@router.post('/', response_model=UserInResponse)
 async def add_user(user: User, db: AsyncIOMotorClient = Depends(get_database)) -> UserInResponse:
     """Add user to db"""
     user_dict = user.dict()

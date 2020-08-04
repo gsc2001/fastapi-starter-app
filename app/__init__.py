@@ -6,7 +6,7 @@ from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 from .utils.db_loader import connect_db, disconnect_db
 import config
 from .utils.error_handlers import http_error_handler, http_422_error_handler
-from .routers import core
+from .core import router as core_router
 
 app = FastAPI()
 
@@ -27,4 +27,4 @@ app.add_exception_handler(
     HTTP_422_UNPROCESSABLE_ENTITY, http_422_error_handler)
 
 # add routers
-app.include_router(core.router, prefix="/core")
+app.include_router(core_router, prefix="/core")
